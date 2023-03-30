@@ -46,5 +46,6 @@ describe('extractors', () => {
     expect(compare.searchRanking('pesquisa item de ', 'item de pesquisa extra item')).toEqual(38);
     expect(compare.searchRanking('pesquisa item de x', 'item de pesquisa extra item')).toEqual(39);
     expect(compare.searchRanking('pesquisa item de x', 'item de pesquisa extra item pesquisa item de')).toEqual(39);
+    expect(compare.searchRanking('pesquisa-/item de x', 'item de/pesquisa-extra item-pesquisa item de')).toEqual(39);
   });
 });
