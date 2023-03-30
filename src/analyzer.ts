@@ -20,13 +20,11 @@ export class Compare {
   private classes: Record<string, string[]> = {};
 
   constructor() {
-    this.classes = classes;
-
-    Object.entries(this.classes).forEach(([classItem, words]) => {
-      this.classes[classItem] = words.map((word) => normalizeUtf8(word));
+    Object.entries(classes).forEach(([_, words], index) => {
+      this.classes[index.toString()] = words.map((word) => normalizeUtf8(word));
 
       words.forEach((world) => {
-        this.worlds[normalizeUtf8(world)] = classItem;
+        this.worlds[normalizeUtf8(world)] = index.toString();
       });
     });
   }
@@ -125,6 +123,6 @@ export class Compare {
 
     [input, target] = this.normalizeSentences(input, target);
 
-    return fixNumber(Compare.analyzeLetters(input, target).rank + Compare.analyzeWords(input, target).rank * 4);
+    return fixNumber(Compare.analyzeLetters(input, target).rank + Compare.analyzeWords(input, target).rank * 8);
   }
 }

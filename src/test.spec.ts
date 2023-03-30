@@ -33,15 +33,18 @@ describe('extractors', () => {
 
   it('should search ranking', async () => {
     const compare = new Compare();
-    expect(compare.searchRanking('favorito', 'preferido')).toEqual(12);
-    expect(compare.searchRanking('favorito', 'preferido é meu amigo')).toEqual(12);
-    expect(compare.searchRanking('favorito', 'preferido é meu amigo predileto')).toEqual(12);
-    expect(compare.searchRanking('favorito e amigo', 'preferido é meu amigo predileto')).toEqual(26);
-    expect(compare.searchRanking('favorito e amigo gelo', 'preferido é meu amigo predileto nevex')).toEqual(28);
-    expect(compare.searchRanking('favorito e amigo gelo', 'preferido é meu amigo predileto neve')).toEqual(34);
-    expect(compare.searchRanking('favorito e amigo gelo meu', 'preferido é meu amigo predileto neve')).toEqual(41);
-    expect(compare.searchRanking('item de pesquisa', 'item de pesquisa')).toEqual(26);
-    expect(compare.searchRanking('pesquisa item de ', 'item de pesquisa extra item')).toEqual(26);
-    expect(compare.searchRanking('pesquisa item de x', 'item de pesquisa extra item')).toEqual(27);
+    expect(compare.searchRanking('abcdef', 'fedcab')).toEqual(6);
+    expect(compare.searchRanking('abcdef', 'abcdef')).toEqual(14);
+    expect(compare.searchRanking('favorito', 'preferido')).toEqual(16);
+    expect(compare.searchRanking('favorito', 'preferido é meu amigo')).toEqual(16);
+    expect(compare.searchRanking('favorito', 'preferido é meu amigo predileto')).toEqual(16);
+    expect(compare.searchRanking('favorito e amigo', 'preferido é meu amigo predileto')).toEqual(38);
+    expect(compare.searchRanking('favorito e amigo gelo', 'preferido é meu amigo predileto nevex')).toEqual(40);
+    expect(compare.searchRanking('favorito e amigo gelo', 'preferido é meu amigo predileto neve')).toEqual(50);
+    expect(compare.searchRanking('favorito e amigo gelo meu', 'preferido é meu amigo predileto neve')).toEqual(61);
+    expect(compare.searchRanking('item de pesquisa', 'item de pesquisa')).toEqual(38);
+    expect(compare.searchRanking('pesquisa item de ', 'item de pesquisa extra item')).toEqual(38);
+    expect(compare.searchRanking('pesquisa item de x', 'item de pesquisa extra item')).toEqual(39);
+    expect(compare.searchRanking('pesquisa item de x', 'item de pesquisa extra item pesquisa item de')).toEqual(39);
   });
 });
